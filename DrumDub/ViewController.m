@@ -12,6 +12,7 @@
 {
     MPMusicPlayerController *music;
 }
+-(void)playbackStateDidChangeNotification:(NSNotification*)notification;
 @property(readonly, nonatomic)MPMusicPlayerController *musicPlayer;
 @end
 
@@ -34,6 +35,20 @@
     picker.prompt = @"Choose a song";
     [self presentViewController:picker animated:YES completion:nil];
 }
+
+- (IBAction)play:(id)sender {
+    [self.musicPlayer.play];
+}
+
+- (IBAction)pause:(id)sender {
+    [self.musicPlayer.pause];
+}
+#pragma mark Notifications
+-(void)playbackStateDidChangeNotification:(NSNotification*)notification{
+    BOOL playing = (music.playbackState==MPMoviePlaybackStatePlaying);
+    _playButton.enabled = !playing;
+    _pauseButton.enabled = playing;
+}
 #pragma mark Properties
 -(MPMusicPlayerController*)musicPlayer{
     if (music == nil) {
@@ -41,6 +56,9 @@
         music.shuffleMode = NO;
         music.repeatMode = NO;
     }
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self selector:@selector(playbackStateDidChangeNotification:) name:MPMusicPlayerControllerPlaybackStateDidChangeNotification object:music];
+    [music beginGeneratingPlaybackNotifications];
     return music;
 }
 #pragma mark MPMediaPickerControllerDelegate

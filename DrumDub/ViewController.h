@@ -12,6 +12,10 @@
 @interface ViewController : UIViewController<MPMediaPickerControllerDelegate>
 
 -(IBAction)selectTracker:(id)sender;
+- (IBAction)play:(id)sender;
+- (IBAction)pause:(id)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *playButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *pauseButton;
 
 @end
 
