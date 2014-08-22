@@ -17,8 +17,10 @@ static NSString *SoundName[kNumberOfPlayers] = {@"snare",@"bass",@"tambourine",@
 }
 -(void)playbackStateDidChangeNotification:(NSNotification*)notification;
 -(void)playingItemDidChangeNotification:(NSNotification*)notification;
+-(void)audioRouteChangedNotification:(NSNotification*)notification;
 -(void)createAudioPlayers;
 -(void)destroyAudioPlayers;
+-(void)activateAudioSession;
 @property(readonly, nonatomic)MPMusicPlayerController *musicPlayer;
 @end
 
@@ -26,12 +28,35 @@ static NSString *SoundName[kNumberOfPlayers] = {@"snare",@"bass",@"tambourine",@
             
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[AVAudioSession sharedInstance] setDelegate:self];
+    [self activateAudioSession];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioRouteChangedNotification:) name:AVAudioSessionRouteChangeNotification object:nil];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(void)activateAudioSession{
+    BOOL active = [[AVAudioSession sharedInstance] setActive:YES error:NULL];
+    if (active && players[0]==nil) {
+        [self createAudioPlayers];
+    }
+    if (!active) {
+        [self destroyAudioPlayers];
+    }
+    for (NSUInteger i=0; i<kNumberOfPlayers; i++) {
+        [(UIButton*)[self.view viewWithTag:i+1] setEnabled:active];
+    }
+}
+
+-(void)audioPlayerBeginInterruption:(AVAudioPlayer *)player{
+    [player pause];
+}
+
+-(void)endInterruption{
+    [self activateAudioSession];
 }
 
 - (IBAction)selectTracker:(id)sender{
@@ -51,9 +76,10 @@ static NSString *SoundName[kNumberOfPlayers] = {@"snare",@"bass",@"tambourine",@
 }
 
 - (IBAction)bang:(id)sender {
+    
     NSInteger playerIndex = [sender tag] -1;
     if(playerIndex >=0 && playerIndex<kNumberOfPlayers){
-        AVAudioPlayer *player = [players[playerIndex]];
+        AVAudioPlayer *player = players[playerIndex];
         [player pause];
         player.currentTime = 0;
         [player play];
@@ -77,6 +103,14 @@ static NSString *SoundName[kNumberOfPlayers] = {@"snare",@"bass",@"tambourine",@
     _albumLabel.text = [nowPlaying valueForProperty:MPMediaItemPropertyAlbumTitle];
     _artistLabel.text = [nowPlaying valueForProperty:MPMediaItemPropertyArtist];
     
+}
+-(void)audioRouteChangedNotification:(NSNotification *)notification{
+    NSNumber *changeReason = notification.userInfo[AVAudioSessionRouteChangeReasonKey];
+    if ([changeReason integerValue] == AVAudioSessionRouteChangeReasonOldDeviceUnavailable) {
+        for (NSUInteger i=0; i<kNumberOfPlayers; i++) {
+            [players[i] pause];
+        }
+    }
 }
 #pragma mark Methods
 -(void)createAudioPlayers{

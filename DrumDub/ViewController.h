@@ -10,7 +10,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface ViewController : UIViewController<MPMediaPickerControllerDelegate, AVAudioPlayerDelegate>
+@interface ViewController : UIViewController<MPMediaPickerControllerDelegate, AVAudioPlayerDelegate, AVAudioSessionDelegate>
 
 -(IBAction)selectTracker:(id)sender;
 - (IBAction)play:(id)sender;
