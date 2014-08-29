@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -13,11 +13,11 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ero-Jv-i2q">
-                                <rect key="frame" x="0.0" y="436" width="480" height="44"/>
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Ysc-lt-2Bu"/>
                                     <barButtonItem enabled="NO" style="plain" systemItem="play" id="IOD-gP-YbO">
@@ -39,7 +39,7 @@
                                 </items>
                             </toolbar>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdT-GL-JUF">
-                                <rect key="frame" x="180" y="20" width="280" height="21"/>
+                                <rect key="frame" x="180" y="20" width="400" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Mzu-3A-Phz"/>
                                 </constraints>
@@ -48,7 +48,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baF-1a-W4z">
-                                <rect key="frame" x="180" y="49" width="280" height="21"/>
+                                <rect key="frame" x="180" y="49" width="400" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="dpk-BV-MdI"/>
                                 </constraints>
@@ -57,7 +57,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5WK-FT-P4t">
-                                <rect key="frame" x="180" y="78" width="280" height="21"/>
+                                <rect key="frame" x="180" y="78" width="400" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="176-KF-DEc"/>
                                 </constraints>
@@ -146,7 +146,6 @@
                                         <include reference="Baq-5Q-pDk"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact"/>
                                 <connections>
                                     <action selector="bang:" destination="vXZ-lx-hvc" eventType="touchDown" id="SzS-t6-3Wp"/>
                                 </connections>
@@ -202,7 +201,6 @@
                             <constraint firstAttribute="bottom" secondItem="ero-Jv-i2q" secondAttribute="bottom" id="ycs-uF-zua"/>
                             <constraint firstItem="VWI-KF-WqM" firstAttribute="top" secondItem="AFz-tP-sme" secondAttribute="bottom" constant="8" symbolic="YES" id="zPR-MF-LS7"/>
                         </constraints>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="PNX-bY-ttY"/>
@@ -211,26 +209,14 @@
                                 <exclude reference="VWI-KF-WqM"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="SOQ-P9-Pmd"/>
+                                <exclude reference="bLP-Kq-Mcm"/>
                                 <exclude reference="eZo-uB-Fxv"/>
                                 <exclude reference="mQu-Lr-QeO"/>
                                 <exclude reference="ma6-fQ-psi"/>
-                                <exclude reference="SOQ-P9-Pmd"/>
-                                <exclude reference="bLP-Kq-Mcm"/>
-                                <exclude reference="J6g-ur-Dib"/>
                                 <exclude reference="usE-1f-eSk"/>
                                 <exclude reference="zPR-MF-LS7"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="constraints">
-                                <include reference="eZo-uB-Fxv"/>
-                                <include reference="mQu-Lr-QeO"/>
-                                <include reference="ma6-fQ-psi"/>
-                                <include reference="SOQ-P9-Pmd"/>
-                                <include reference="bLP-Kq-Mcm"/>
-                                <include reference="J6g-ur-Dib"/>
-                                <include reference="usE-1f-eSk"/>
-                                <include reference="zPR-MF-LS7"/>
+                                <exclude reference="J6g-ur-Dib"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -239,6 +225,16 @@
                                 <include reference="AFz-tP-sme"/>
                                 <include reference="p4u-yd-IgH"/>
                                 <include reference="VWI-KF-WqM"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="SOQ-P9-Pmd"/>
+                                <include reference="bLP-Kq-Mcm"/>
+                                <include reference="eZo-uB-Fxv"/>
+                                <include reference="mQu-Lr-QeO"/>
+                                <include reference="ma6-fQ-psi"/>
+                                <include reference="usE-1f-eSk"/>
+                                <include reference="zPR-MF-LS7"/>
+                                <include reference="J6g-ur-Dib"/>
                             </mask>
                         </variation>
                     </view>
